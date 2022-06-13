@@ -14,7 +14,7 @@ export default function Track() {
     if (loading) return console.log('Loading...')
     if (error) return console.log(error)
 
-    const el = data.data[0].attributes
+    const el = data.data[1].attributes
     const title = el.title
     const cover_image = el.image_url
     const track_url = el.track_url
