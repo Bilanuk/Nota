@@ -5,16 +5,21 @@ export const TrackWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   margin: 10px;
   backdrop-filter: blur(5px);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `
+export const CoverImageWrapper = styled.div`
+  width: 45vh;
+  height: 45vh;
+  margin: 0 auto;
+`
+
 export const CoverImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
-
   width: 45vh;
   height: 45vh;
   margin: 0 auto;

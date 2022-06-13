@@ -4,7 +4,7 @@ import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player'
 
 import 'react-h5-audio-player/lib/styles.css';
 import './Player.scss'
-import {Author, CoverImage, Title, TrackWrapper} from './Track.styles'
+import {Author, CoverImage, CoverImageWrapper, Title, TrackWrapper} from './Track.styles'
 
 export default function Track() {
     const [{data, loading, error}, refetch] = useAxios({
@@ -22,9 +22,14 @@ export default function Track() {
 
     return(
         <TrackWrapper>
-            <CoverImage src={cover_image}/>
+            <CoverImageWrapper>
+                <CoverImage src={cover_image}/>
+            </CoverImageWrapper>
+
             <Title>{title}</Title>
+
             <Author>{author}</Author>
+
             <AudioPlayer
                 src={track_url}
                 customAdditionalControls={[]}
