@@ -11,7 +11,9 @@ function getCurrentVolume() {
     return parseFloat(el[0].style.left) / 100
 }
 
-export default function Track({id}) {
+export default function Track({...props}) {
+    const id = props.id
+    const [isPlaying, setIsPlaying] = props.controls
     const [{data, loading, error}, refetch] = useAxios({
         url: `http://localhost:3001/api/v1/track/${id}`
     })
@@ -42,9 +44,14 @@ export default function Track({id}) {
             <AudioPlayer
                 ref={player}
                 src={track_url}
+                autoPlay={isPlaying ? 'autoplay' : null}
+
                 customAdditionalControls={[]}
                 volume={volume}
-                onVolumeChange={() => {setVolume(getCurrentVolume())}}
+                onVolumeChange={ () => setVolume(getCurrentVolume()) }
+                onEnded={ () => setIsPlaying(false) }
+                onPause={ () => setIsPlaying(false) }
+                onPlay={ () => setIsPlaying(true) }
             />
         </TrackWrapper>
     )

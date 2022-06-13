@@ -9,7 +9,8 @@ const loadMainWindow = () => {
         minHeight: 800,
         minWidth: 500,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            autoplayPolicy: "user-gesture-required"
         }
     });
 

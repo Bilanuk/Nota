@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import useAxios from "axios-hooks";
 
 import styled from "styled-components";
@@ -9,7 +9,7 @@ const LeftBarWrapper = styled.div`
   position: absolute;
   left: 20px;
   width: 350px;
-  height: 90vh;
+  height: 85vh;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -35,9 +35,13 @@ export default function LeftBar() {
         <LeftBarWrapper>
             {data.data.map((track) =>
                 track.id == id ? (
-                    <SideBarTrack key={'track_id: ' + track.id} props={track} active={true} />
+                    <SideBarTrack key={'track_id: ' + track.id} props={track}
+                                  active={true}
+                    />
                 ) : (
-                    <SideBarTrack key={'track_id: ' + track.id} props={track} active={false}/>
+                    <SideBarTrack key={'track_id: ' + track.id} props={track} a
+                                  ctive={false}
+                    />
                 )
             )}
         </LeftBarWrapper>
