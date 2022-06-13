@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import useAxios from "axios-hooks";
 
 import styled from "styled-components";
 import SideBarTrack from "./SideBarTrack/SideBarTrack";
+import {TrackContext} from "../context";
 
 const LeftBarWrapper = styled.div`
   position: absolute;
@@ -21,6 +22,8 @@ const LeftBarWrapper = styled.div`
 `
 
 export default function LeftBar() {
+    const [id,] = useContext(TrackContext)
+
     const [{data, loading, error}, refetch] = useAxios({
         url: 'http://localhost:3001/api/v1/track'
     })
@@ -31,7 +34,11 @@ export default function LeftBar() {
     return(
         <LeftBarWrapper>
             {data.data.map((track) =>
-                <SideBarTrack key={'track_id: ' + track.id} props={track} />
+                track.id == id ? (
+                    <SideBarTrack key={'track_id: ' + track.id} props={track} active={true} />
+                ) : (
+                    <SideBarTrack key={'track_id: ' + track.id} props={track} active={false}/>
+                )
             )}
         </LeftBarWrapper>
     )

@@ -7,13 +7,11 @@ import {TrackContext} from "./context";
 
 
 export default function App() {
-
     const [{data, loading, error}, refetch] = useAxios({
         url: 'http://localhost:3001/api/v1/track'
     })
 
     const [id, setId] = useState()
-
 
     if (loading) return null
     if (error) return null
@@ -23,7 +21,7 @@ export default function App() {
             <div className={'container'}>
                 <LeftBar props={data} />
 
-                { id && <Track id={id}/> }
+                <Track id={id}/>
             </div>
         </TrackContext.Provider>
     )

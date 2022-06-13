@@ -12,7 +12,22 @@ const SideBarTrackStyled = styled.div`
   border-radius: 10px;
   margin: 20px;
   backdrop-filter: blur(5px);
+  transition: all 1s;
 `
+const ActiveSideBarTrackStyled = styled.div`
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.11);
+  transition: all 1s;
+`
+
 const TrackCoverWrapper = styled.div`
   width: 100px;
   height: 100px;
@@ -35,6 +50,19 @@ const TrackData = styled.div`
 
 export default function SideBarTrack({ ...props }) {
     const [, setId] = useContext(TrackContext)
+
+    if (props.active) return (
+        <ActiveSideBarTrackStyled onClick={() => setId(props.props.attributes.id)}>
+            <TrackCoverWrapper>
+                <TrackCover src={props.props.attributes.image_url}/>
+            </TrackCoverWrapper>
+
+            <TrackData>
+                <p>{props.props.attributes.title}</p>
+                <p>{props.props.attributes.author}</p>
+            </TrackData>
+        </ActiveSideBarTrackStyled>
+    )
 
     return(
         <SideBarTrackStyled onClick={() => setId(props.props.attributes.id)}>
