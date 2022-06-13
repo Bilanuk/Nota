@@ -1,0 +1,19 @@
+.rhap_container {
+  background-color: transparent;
+  box-shadow: none;
+}
+.rhap_container * {
+  color: white;
+}
+
+.rhap_controls-section {
+  flex-direction: column;
+}
+.rhap_volume-controls {
+  width: 30%;
+  margin-top: 20px;
+  justify-content: center;
+}
+.rhap_volume-container {
+  flex-direction: column;
+}

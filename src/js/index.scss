@@ -1,0 +1,23 @@
+body {
+  font-family: "Roboto Light", sans-serif;
+  background: #383838 url('../../assets/images/background/picture-3.gif') no-repeat center center fixed;
+  //background-color: #000000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0;
+  height: 100vh;
+
+  #root{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    color: white;
+  }
+}
