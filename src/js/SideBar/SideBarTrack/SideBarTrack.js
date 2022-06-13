@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
+import {TrackContext} from "../../context";
 
 const SideBarTrackStyled = styled.div`
   height: 100px;
@@ -33,8 +34,10 @@ const TrackData = styled.div`
 `
 
 export default function SideBarTrack({ ...props }) {
+    const [, setId] = useContext(TrackContext)
+
     return(
-        <SideBarTrackStyled onClick={() => {}}>
+        <SideBarTrackStyled onClick={() => setId(props.props.attributes.id)}>
             <TrackCoverWrapper>
                 <TrackCover src={props.props.attributes.image_url}/>
             </TrackCoverWrapper>

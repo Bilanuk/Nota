@@ -10,6 +10,7 @@ export default function Track({id}) {
     const [{data, loading, error}, refetch] = useAxios({
         url: `http://localhost:3001/api/v1/track/${id}`
     })
+
     if (loading) return console.log('Loading...')
     if (error) return console.log(error)
 
