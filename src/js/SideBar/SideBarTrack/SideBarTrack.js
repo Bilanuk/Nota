@@ -11,7 +11,6 @@ const SideBarTrackStyled = styled.div`
   border-radius: 10px;
   margin: 20px;
   backdrop-filter: blur(5px);
-  //box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `
 const TrackCoverWrapper = styled.div`
   width: 100px;
@@ -34,12 +33,8 @@ const TrackData = styled.div`
 `
 
 export default function SideBarTrack({ ...props }) {
-    console.log(props.props.attributes)
-
-    const sayHi = (title) => console.log(title)
-
     return(
-        <SideBarTrackStyled onClick={() => sayHi(props.props.attributes.title)}>
+        <SideBarTrackStyled onClick={() => {}}>
             <TrackCoverWrapper>
                 <TrackCover src={props.props.attributes.image_url}/>
             </TrackCoverWrapper>
