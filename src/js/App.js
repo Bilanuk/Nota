@@ -3,7 +3,7 @@ import './index.scss'
 import Track from "./Track/Track";
 import LeftBar from "./SideBar/LeftBar";
 import useAxios from "axios-hooks";
-import {TrackContext} from "./context";
+import {API_URL, TrackContext} from "./context";
 
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
     console.log(isPlaying)
 
     const [{data, loading, error}, refetch] = useAxios({
-        url: 'http://localhost:3001/api/v1/track'
+        url: API_URL + 'track'
     })
 
     if (loading) return null

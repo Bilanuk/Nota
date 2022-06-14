@@ -5,6 +5,7 @@ import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player'
 import 'react-h5-audio-player/lib/styles.css';
 import './Player.scss'
 import {Author, CoverImage, CoverImageWrapper, Title, TrackWrapper} from './Track.styles'
+import {API_URL} from "../context";
 
 function getCurrentVolume() {
     let el = document.getElementsByClassName('rhap_volume-indicator')
@@ -15,7 +16,7 @@ export default function Track({...props}) {
     const id = props.id
     const [isPlaying, setIsPlaying] = props.controls
     const [{data, loading, error}, refetch] = useAxios({
-        url: `http://localhost:3001/api/v1/track/${id}`
+        url: API_URL + `track/${id}`
     })
 
     const [volume, setVolume] = useState(0.5)

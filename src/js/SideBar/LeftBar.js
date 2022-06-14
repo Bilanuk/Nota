@@ -3,7 +3,7 @@ import useAxios from "axios-hooks";
 
 import styled from "styled-components";
 import SideBarTrack from "./SideBarTrack/SideBarTrack";
-import {TrackContext} from "../context";
+import {API_URL, TrackContext} from "../context";
 
 const LeftBarWrapper = styled.div`
   position: absolute;
@@ -25,7 +25,7 @@ export default function LeftBar() {
     const [id,] = useContext(TrackContext)
 
     const [{data, loading, error}, refetch] = useAxios({
-        url: 'http://localhost:3001/api/v1/track'
+        url: API_URL + 'track'
     })
 
     if (loading) return console.log('Loading...')
