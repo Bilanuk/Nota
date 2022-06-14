@@ -8,7 +8,7 @@ import {API_URL, TrackContext} from "./context";
 
 export default function App() {
     const [isPlaying, setIsPlaying] = useState(false)
-    const [id, setId] = useState()
+    const [currentTrack, setTrack] = useState()
     console.log(isPlaying)
 
     const [{data, loading, error}, refetch] = useAxios({
@@ -19,11 +19,11 @@ export default function App() {
     if (error) return null
 
     return(
-        <TrackContext.Provider value={[id, setId]}>
+        <TrackContext.Provider value={[currentTrack, setTrack]}>
             <div className={'container'}>
-                <LeftBar props={data} />
+                <LeftBar props={data} refetch={refetch} />
 
-                <Track id={id} controls={[isPlaying, setIsPlaying]}/>
+                <Track currentTrack={currentTrack} controls={[isPlaying, setIsPlaying]}/>
             </div>
         </TrackContext.Provider>
     )

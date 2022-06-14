@@ -13,20 +13,13 @@ function getCurrentVolume() {
 }
 
 export default function Track({...props}) {
-    const id = props.id
     const [isPlaying, setIsPlaying] = props.controls
-    const [{data, loading, error}, refetch] = useAxios({
-        url: API_URL + `track/${id}`
-    })
-
     const [volume, setVolume] = useState(0.5)
     const player = useRef()
 
-    if (loading) return console.log('Loading...')
-    if (error) return console.log(error)
-    if (data.data === null) return null
+    if(props.currentTrack === undefined) return null
 
-    const el = data.data.attributes
+    const el = props.currentTrack.attributes
     const title = el.title
     const cover_image = el.image_url
     const track_url = el.track_url

@@ -49,10 +49,10 @@ const TrackData = styled.div`
 `
 
 export default function SideBarTrack({ ...props }) {
-    const [, setId] = useContext(TrackContext)
+    const [, setTrack] = useContext(TrackContext)
 
     if (props.active) return (
-        <ActiveSideBarTrackStyled onClick={() => setId(props.props.attributes.id)}>
+        <ActiveSideBarTrackStyled onClick={() => setTrack(props.props)}>
             <TrackCoverWrapper>
                 <TrackCover src={props.props.attributes.image_url}/>
             </TrackCoverWrapper>
@@ -65,7 +65,7 @@ export default function SideBarTrack({ ...props }) {
     )
 
     return(
-        <SideBarTrackStyled onClick={() => setId(props.props.attributes.id)}>
+        <SideBarTrackStyled onClick={() => setTrack(props.props)}>
             <TrackCoverWrapper>
                 <TrackCover src={props.props.attributes.image_url}/>
             </TrackCoverWrapper>

@@ -21,19 +21,12 @@ const LeftBarWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `
 
-export default function LeftBar() {
+export default function LeftBar({ ...props }) {
     const [id,] = useContext(TrackContext)
-
-    const [{data, loading, error}, refetch] = useAxios({
-        url: API_URL + 'track'
-    })
-
-    if (loading) return console.log('Loading...')
-    if (error) return console.log(error)
 
     return(
         <LeftBarWrapper>
-            {data.data.map((track) =>
+            {props.props.data.map((track) =>
                 track.id == id ? (
                     <SideBarTrack key={'track_id: ' + track.id} props={track}
                                   active={true}
@@ -47,7 +40,3 @@ export default function LeftBar() {
         </LeftBarWrapper>
     )
 }
-// {data.data.map((track) =>
-//     <Track key={'track_id: ' + track.id} props={track}/>
-//     <LeftBarWrapper className={"left-nav"}></LeftBarWrapper>
-// )}
