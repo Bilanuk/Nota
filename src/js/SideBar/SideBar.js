@@ -7,7 +7,7 @@ import Upload from "./Favourites/Upload";
 import Search from "./Search/Search";
 import {useForm} from "react-hook-form";
 import './sidebar.scss'
-import {AiOutlineMenu} from 'react-icons/ai'
+import {AiOutlineMenu, AiOutlineReload} from 'react-icons/ai'
 
 const LeftBarWrapper = styled.div`
   position: absolute;
@@ -61,7 +61,20 @@ export default function SideBar({ ...props }) {
                     color: 'white',
                     position: 'absolute',
                     top: (showStatus ? '-5%' : '10px'),
-                    right: (showStatus ? '45%' : '-50px'),
+                    right: (showStatus ? '40%' : '-50px'),
+                    fontSize: '23pt',
+                    transition: 'all 1s'
+                }}
+            />
+
+            <AiOutlineReload
+                onClick={ () => props.refetch() }
+                className={'reload-button'}
+                style={{
+                    color: 'white',
+                    position: 'absolute',
+                    top: (showStatus ? '-5%' : '-20px'),
+                    right: (showStatus ? '50%' : '-50px'),
                     fontSize: '23pt',
                     transition: 'all 1s'
                 }}
