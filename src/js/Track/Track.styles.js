@@ -26,9 +26,10 @@ export const CoverImage = styled.img`
 `
 
 export const Title = styled.h1`
+  margin-top: 20px;
   color: white;
 `
 export const Author = styled.h4`
-  color: #c9c9c9;
+  color: #e3e3e3;
   margin-top: 0;
 `

@@ -1,11 +1,10 @@
 import React, {useRef, useState} from "react";
-import useAxios from "axios-hooks";
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player'
 
 import 'react-h5-audio-player/lib/styles.css';
 import './Player.scss'
 import {Author, CoverImage, CoverImageWrapper, Title, TrackWrapper} from './Track.styles'
-import {API_URL} from "../context";
+import {PlayerContext} from "../../../../nota-web/src/js/context";
 
 function getCurrentVolume() {
     let el = document.getElementsByClassName('rhap_volume-indicator')
@@ -13,9 +12,15 @@ function getCurrentVolume() {
 }
 
 export default function Track({...props}) {
-    const [isPlaying, setIsPlaying] = props.controls
+    const [isAutoPlaying, setIsAutoPlaying] = props.controls
     const [volume, setVolume] = useState(0.5)
     const player = useRef()
+
+    function playPause(active) {
+        if(active) {
+            player.current.audio.current.togglePlay()
+        }
+    }
 
     if(props.currentTrack === undefined) return null
 
@@ -26,27 +31,28 @@ export default function Track({...props}) {
     const author = el.author
 
     return(
-        <TrackWrapper>
-            <CoverImageWrapper>
-                <CoverImage src={cover_image}/>
-            </CoverImageWrapper>
+        <PlayerContext.Provider value={playPause}>
+            <TrackWrapper>
+                <CoverImageWrapper>
+                    <CoverImage src={cover_image}/>
+                </CoverImageWrapper>
 
-            <Title>{title}</Title>
+                <Title>{title}</Title>
 
-            <Author>{author}</Author>
+                <Author>{author}</Author>
 
-            <AudioPlayer
-                ref={player}
-                src={track_url}
-                autoPlay={isPlaying ? 'autoplay' : null}
-
-                customAdditionalControls={[]}
-                volume={volume}
-                onVolumeChange={ () => setVolume(getCurrentVolume()) }
-                onEnded={ () => setIsPlaying(false) }
-                onPause={ () => setIsPlaying(false) }
-                onPlay={ () => setIsPlaying(true) }
-            />
-        </TrackWrapper>
+                <AudioPlayer
+                    ref={player}
+                    src={track_url}
+                    autoPlay={isAutoPlaying ? 'autoplay' : null}
+                    customAdditionalControls={[]}
+                    volume={volume}
+                    onVolumeChange={ () => setVolume(getCurrentVolume()) }
+                    onEnded={ () => setIsAutoPlaying(false) }
+                    onPause={ () => setIsAutoPlaying(false) }
+                    onPlay={ () => setIsAutoPlaying(true) }
+                />
+            </TrackWrapper>
+        </PlayerContext.Provider>
     )
 }
